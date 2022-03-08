@@ -1,2 +1,4 @@
 # calendar.js
-A calendar on your web.
+calendar.js is an open-source web program that provides a calendar to your website.
+
+## Usage
