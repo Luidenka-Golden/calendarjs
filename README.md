@@ -8,7 +8,7 @@ To load calendar.js to your website, here is an example code:
 <html>
 <body>
 <div id="calendar"></div> <!--This div element is the calendar-->
-<script src="https://drive.google.com/file/d/1eVevFxNPpmmvZaYqdpVgOTza7EOC1wrx">setCalendar()</script>
+<script src="https://raw.githubusercontent.com/Luidenka-Golden/calendarjs/main/calendar.js">setCalendar()</script>
 </body>
 </html>
 ```
