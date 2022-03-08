@@ -18,4 +18,5 @@ This project is still developing, if there is any bugs, please open an issue. Th
 
 ## About Us
 Current Developers: Luidenka
+
 Want to join our team? Email luidenka@outlook.com!
