@@ -7,9 +7,13 @@ let w = new Date(y + "-" + m + "-01").getDay();
 const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ["", "January", "February", "March", "April", "May", "June",
 "July", "August", "September", "October", "November", "December"];
+var showMonth = document.createElement('h1')
+showMonth.innerHTML = months[m] + '  ' + y.toString()
+document.getElementById('calendar').appendChild(showMonth);
 var table = document.createElement('table');
 table.setAttribute('id', 't');
 table.style.width = '100%';
+table.style.height = '500px';
 document.getElementById('calendar').appendChild(table);
 var table = document.createElement('tbody');
 table.setAttribute('id', 'month');
