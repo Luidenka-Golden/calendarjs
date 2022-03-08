@@ -12,3 +12,10 @@ To load calendar.js to your website, here is an example code:
 </body>
 </html>
 ```
+
+## Note
+This project is still developing, if there is any bugs, please open an issue. The developing team will fix the bug as soon as possible.
+
+## About Us
+Current Developers: Luidenka
+Want to join our team? Email luidenka@outlook.com!
