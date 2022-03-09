@@ -1,26 +1,28 @@
 var hk_holidays;
-function setCalendar() {
-    var d = new Date;
-    var y = d.getFullYear();
-    var m = d.getMonth() + 1
-    let w = new Date(y + "-" + m + "-01").getDay();
-    const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const months = ["", "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
+var obj;
+var d = new Date;
+var y = d.getFullYear();
+var m = d.getMonth() + 1
+let w = new Date(y + "-" + m + "-01").getDay();
+const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const months = ["", "January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"];
+
+function setThisMonthCalendar() {
     var topbar = document.createElement('div')
     topbar.setAttribute('id', 'topbar')
     document.getElementById('calendar').appendChild(topbar);
-    var showMonth = document.createElement('h1')
-    showMonth.innerHTML = months[m] + '&nbsp;&nbsp;' + y.toString()
-    document.getElementById('topbar').appendChild(showMonth);
     var prevMonth = document.createElement('span')
     prevMonth.setAttribute('id', 'prev')
-    prevMonth.innerHTML = '<'
+    prevMonth.innerHTML = '<&nbsp;&nbsp;'
     document.getElementById('topbar').appendChild(prevMonth);
     var nextMonth = document.createElement('span')
     nextMonth.setAttribute('id', 'next')
-    nextMonth.innerHTML = '>'
+    nextMonth.innerHTML = '&nbsp;&nbsp;>'
     document.getElementById('topbar').appendChild(nextMonth);
+    var showMonth = document.createElement('span')
+    showMonth.innerHTML = '&nbsp;&nbsp&nbsp;&nbsp'+months[m] + '&nbsp;&nbsp;' + y.toString()
+    document.getElementById('topbar').appendChild(document.createElement('span').appendChild(showMonth));
     var table = document.createElement('table');
     table.setAttribute('id', 't');
     table.style.width = '100%';
@@ -78,57 +80,94 @@ function setCalendar() {
                     t.style.backgroundColor = 'skyblue';
                 }
             }
+            function checkSunday() {
+                var day = new Date(y + '-' + m + '-' + i).getDay();
+                if (day == 0) {
+                    t.style.color = 'red';
+                }
+            }
+            function checkEvents(cell, date) {
+                fetch('/static/calendars/hk_holidays.json').then((res) => res.json()).then(res => obj = res)
+                .then(() => {
+                    if (obj['events'][months[m]][date] === undefined) {}
+                    else {
+                        var event = document.createElement('span');
+                        event.innerHTML = '<br>'+ obj['events'][months[m]][date]
+                        cell.appendChild(event)
+                    }
+                })
+            }
             if (table.rows[1].cells.length == 7) {
                 if (table.rows[2].cells.length == 7) {
                     if (table.rows[3].cells.length == 7) {
                         if (table.rows[4].cells.length == 7) {
                             var t = document.createElement('td');
+                            checkSunday()
                             t.style.textAlign = 'right';
                             t.style.verticalAlign = 'top';
-                            t.innerHTML = i.toString()
+                            var p = document.createElement('span');
+                            p.innerHTML = i;
+                            t.appendChild(p)
+                            checkEvents(t, i)
+                            t.style.height == '73px';
                             document.getElementById('tr5').appendChild(t);
                             checkToday()
                         }
                         else {
                             var t = document.createElement('td');
+                            checkSunday()
                             t.style.textAlign = 'right';
                             t.style.verticalAlign = 'top';
-                            t.innerHTML = i.toString()
+                            var p = document.createElement('span');
+                            p.innerHTML = i;
+                            t.appendChild(p)
+                            checkEvents(t, i)
+                            t.style.height == '73px';
                             document.getElementById('tr4').appendChild(t);
                             checkToday()
                         }
                     }
                     else {
                         var t = document.createElement('td');
+                        checkSunday()
                         t.style.textAlign = 'right';
                         t.style.verticalAlign = 'top';
-                        t.innerHTML = i.toString()
+                        var p = document.createElement('span');
+                        p.innerHTML = i;
+                        t.appendChild(p)
+                        checkEvents(t, i)
+                        t.style.height == '73px';
                         document.getElementById('tr3').appendChild(t);
                         checkToday()
                     }
                 }
                 else {
                     var t = document.createElement('td');
+                    checkSunday()
                     t.style.textAlign = 'right';
                     t.style.verticalAlign = 'top';
-                    t.innerHTML = i.toString()
+                    var p = document.createElement('span');
+                    p.innerHTML = i;
+                    t.appendChild(p)
+                    checkEvents(t, i)
+                    t.style.height == '73px';
                     document.getElementById('tr2').appendChild(t);
                     checkToday()
                 }
             }
             else {
                 var t = document.createElement('td');
+                checkSunday()
                 t.style.textAlign = 'right';
                 t.style.verticalAlign = 'top';
-                t.innerHTML = i.toString()
+                var p = document.createElement('span');
+                p.innerHTML = i;
+                t.appendChild(p)
+                checkEvents(t, i)
+                t.style.height == '73px';
                 document.getElementById('tr1').appendChild(t);
                 checkToday()
             }
         }
     }
 }
-function loadGlobalEvents() {
-    fetch("/static/calendars/hk_holidays.json").then(response => {return response.json();})
-    .then(data => hk_holidays = data);
-}
-loadGlobalEvents()
