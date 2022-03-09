@@ -5,12 +5,22 @@ calendar.js is an open-source web program that provides a calendar to your websi
 To load calendar.js to your website, here is an example code:
 ```
 <!DOCTYPE html>
-<html>
 <body>
-<div id="calendar"></div> <!--This div element is the calendar-->
-<script src="https://raw.githubusercontent.com/Luidenka-Golden/calendarjs/main/calendar.js">setCalendar()</script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+    body {
+        font-family: Google Sans,-apple-system,BlinkMacSystemFont,sans-serif;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+    </style>
+    <div id="calendar"></div>
+    <script src="/static/calendar.js"></script>
+    <script>setThisMonthCalendar()</script>
 </body>
-</html>
 ```
 
 ## Note
